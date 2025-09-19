@@ -3,11 +3,11 @@
 
 ---
 # Project Title & Description
-** MediaLog ** is a personal media consumption tracker. It is a full-stack web application designed to help users manage and organize their media consumption habits. The app provides a single, centralized platform for logging progress on TV shows, movies, books, and podcasts.
+**MediaLog** is a personal media consumption tracker. It is a full-stack web application designed to help users manage and organize their media consumption habits. The app provides a single, centralized platform for logging progress on TV shows, movies, books, and podcasts.
 
-** Who it's for **: This tool is for anyone who enjoys media but struggles to keep track of their watching, reading, or listening journey across various platforms.
+**Who it's for**: This tool is for anyone who enjoys media but struggles to keep track of their watching, reading, or listening journey across various platforms.
 
-** Why it matters **: In today's fragmented digital world, it is easy to lose track of what episode you were on or what book you wanted to read next. This project aims to solve this problem by offering a dedicated space for users to track their progress, create schedules, and eventually share their experiences with friends.
+**Why it matters**: In today's fragmented digital world, it is easy to lose track of what episode you were on or what book you wanted to read next. This project aims to solve this problem by offering a dedicated space for users to track their progress, create schedules, and eventually share their experiences with friends.
 
 # Tech Stack
 ## Frontend

@@ -1,0 +1,96 @@
+@use "../../responsive.scss" as *;
+@use "../../variables" as *;
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 25px;
+  padding: 12px 20px;
+  box-shadow: 0 4px 15px rgba(2, 73, 134, 0.1);
+  max-width: 450px;
+  width: 100%;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+
+  &:focus-within {
+    border-color: $accent-orange;
+    box-shadow: 0 4px 20px rgba(233, 130, 5, 0.2);
+    transform: translateY(-2px);
+  }
+
+  input {
+    border: none;
+    outline: none;
+    flex: 1;
+    padding: 8px 12px;
+    font-size: 16px;
+    background: transparent;
+    color: $primary-blue;
+    font-weight: 500;
+
+    &::placeholder {
+      color: #999;
+      font-weight: 400;
+    }
+
+    &:focus {
+      color: $primary-blue;
+    }
+  }
+
+  button {
+    background: linear-gradient(135deg, $accent-orange, $accent-pink);
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    margin-left: 8px;
+
+    &:hover {
+      background: linear-gradient(135deg, $primary-blue, $accent-orange);
+      transform: scale(1.1);
+      box-shadow: 0 4px 12px rgba(2, 73, 134, 0.3);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  @include sm {
+    max-width: 100%;
+    margin: 0 10px;
+    padding: 10px 16px;
+
+    input {
+      font-size: 14px;
+    }
+
+    button {
+      padding: 6px;
+
+      svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+
+  @include md {
+    max-width: 350px;
+  }
+}
+
+
+

@@ -1,0 +1,204 @@
+@use "../../responsive.scss" as *;
+@use "../../variables" as *;
+
+.login {
+  height: 100%; // Use full height of content area
+  display: flex;
+  background-color: $primary-bg;
+
+  .formContainer {
+    flex: 3; // Same as homepage
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background-color: white;
+    // Removed max-width constraint to fill available space
+
+    .formWrapper {
+      width: 100%;
+      max-width: 600px;
+
+      .formHeader {
+        text-align: center;
+        margin-bottom: 40px;
+
+        h1 {
+          font-size: 32px;
+          font-weight: 700;
+          color: $primary-blue;
+          margin: 0 0 8px 0;
+        }
+
+        p {
+          font-size: 16px;
+          color: #666;
+          margin: 0;
+        }
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+
+        .inputGroup {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+
+          label {
+            font-size: 14px;
+            font-weight: 600;
+            color: $primary-blue;
+          }
+
+          input {
+            padding: 16px 20px;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background-color: #fafbfc;
+
+            &:focus {
+              outline: none;
+              border-color: $accent-orange;
+              background-color: white;
+              box-shadow: 0 0 0 3px rgba(233, 130, 5, 0.1);
+            }
+
+            &::placeholder {
+              color: #999;
+            }
+          }
+        }
+
+        button {
+          padding: 16px 24px;
+          border-radius: 12px;
+          border: none;
+          background: linear-gradient(135deg, $accent-orange, $accent-pink);
+          color: white;
+          font-weight: 600;
+          font-size: 16px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          margin-top: 8px;
+          box-shadow: 0 4px 15px rgba(233, 130, 5, 0.3);
+
+          &:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(233, 130, 5, 0.4);
+            background: linear-gradient(135deg, $primary-blue, $accent-orange);
+          }
+
+          &:active:not(:disabled) {
+            transform: translateY(0);
+          }
+
+          &:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+          }
+        }
+
+        .errorMessage {
+          background-color: rgba(234, 115, 148, 0.1);
+          color: $accent-pink;
+          padding: 12px 16px;
+          border-radius: 8px;
+          font-size: 14px;
+          font-weight: 500;
+          text-align: center;
+          border: 1px solid rgba(234, 115, 148, 0.2);
+        }
+
+        .formFooter {
+          text-align: center;
+          margin-top: 20px;
+
+          p {
+            font-size: 14px;
+            color: #666;
+            margin: 0;
+
+            a {
+              color: $accent-orange;
+              text-decoration: none;
+              font-weight: 600;
+              transition: color 0.3s ease;
+
+              &:hover {
+                color: $primary-blue;
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .imgContainer {
+    flex: 2; // Same as homepage
+    background: linear-gradient(135deg, $primary-bg, rgba(233, 130, 5, 0.1));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    // Removed max-width constraint to fill available space
+
+    @include md {
+      display: none;
+    }
+
+    .imageWrapper {
+      position: relative;
+      z-index: 2;
+
+      img {
+        width: 80%; // Same as homepage
+        max-width: 500px; // Increased back to 500px
+        height: auto;
+        object-fit: contain;
+      }
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 300px; // Increased back to 300px
+      height: 300px; // Increased back to 300px
+      background: linear-gradient(135deg, $accent-pink, $accent-orange);
+      border-radius: 50%;
+      opacity: 0.1;
+      z-index: 1;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 20%;
+      right: 20%;
+      width: 200px; // Increased back to 200px
+      height: 200px; // Increased back to 200px
+      background: linear-gradient(135deg, $primary-blue, $accent-orange);
+      border-radius: 50%;
+      opacity: 0.05;
+      z-index: 1;
+    }
+  }
+
+  @include sm {
+    .formContainer {
+      padding: 20px;
+    }
+  }
+}

@@ -1,35 +1,57 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import {
+  createBrowserRouter,
+  RouterProvider
+} from "react-router-dom";
+import HomePage from "./routes/homePage/homePage";
+import Login from "./routes/login/login";
+import Register from "./routes/register/register";
+import DashBoard from "./routes/dashBoard/dashBoard";
+import { Layout } from "./routes/layout/layout";
 
+/**
+ * Main App component that sets up routing for the MediaLog application.
+ * 
+ * Routes:
+ * - /: Homepage with media consumption tracker introduction
+ * - /login: User authentication page
+ * - /register: User registration page
+ * - /dashboard: Main dashboard for tracking media consumption
+ * 
+ * All routes are wrapped in a Layout component that provides consistent
+ * navigation and structure across the application.
+ * 
+ * @returns {JSX.Element} The main App component with routing configuration
+ */
 function App() {
-  const [count, setCount] = useState(0)
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        {
+          index: true,
+          element: <HomePage />
+        },
+        {
+          path: "login",
+          element: <Login />
+        },
+        {
+          path: "register",
+          element: <Register />
+        },
+        {
+          path: "dashboard",
+          element: <DashBoard />
+        },
+      ]
+    },
+  ]);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <RouterProvider router={router} />
+  );
 }
 
-export default App
+export default App;
+

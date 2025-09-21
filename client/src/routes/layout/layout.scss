@@ -1,0 +1,40 @@
+@use "../../responsive.scss" as *;
+
+.layout {
+  height: 100vh;
+  width: 100%; // Fill entire body width
+  max-width: 1440px; // Set maximum width to 1440px
+  max-height: 800px; // Set maximum height to 800px
+  margin: 0 auto; // Center the layout when it reaches max width
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; // Prevent content from exceeding max dimensions
+
+  @include lg {
+    max-width: 1280px; // Reduce max width on large screens
+  }
+
+  @include md {
+    max-width: 768px; // Further reduce on medium screens
+    max-height: 100vh; // Allow full height on smaller screens
+  }
+
+  @include sm {
+    max-width: 640px; // Further reduce on small screens
+    max-height: 100vh; // Allow full height on smaller screens
+  }
+
+  .navbar {
+    flex-shrink: 0; // Prevent navbar from shrinking
+  }
+
+  .content {
+    flex: 1; // Take remaining space
+    max-height: calc(800px - 80px); // Account for navbar height
+    overflow-y: auto; // Allow scrolling if content exceeds height
+    display: flex; // Enable flexbox for child elements
+    flex-direction: column; // Stack children vertically
+  }
+}

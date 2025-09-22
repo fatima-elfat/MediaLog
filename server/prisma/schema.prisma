@@ -1,0 +1,87 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Client {
+  id        String @id @default(uuid()) @map("_id")
+  email     String @unique
+  name      String?
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  logs      MediaLog[]
+}
+
+model MediaLog {
+  id              String         @id @default(uuid()) @map("_id")
+  title           String
+  mediaType       MediaType
+  status          MediaStatus
+  currentProgress String?        // For episodes, pages, or episodes. Example: "S01E05"
+  notes           String?
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  user            Client         @relation(fields: [clientId], references: [id])
+  clientId        String
+  tvShow          TvShow?
+  movie           Movie?
+  book            Book?
+  podcast         Podcast?
+}
+
+enum MediaType {
+  TV_SHOW
+  MOVIE
+  BOOK
+  PODCAST
+}
+
+enum MediaStatus {
+  PLANNING_TO_WATCH
+  IN_PROGRESS
+  COMPLETED
+  DROPPED
+}
+
+model TvShow {
+  id              String @id @default(uuid()) @map("_id")
+  seriesTitle     String
+  totalEpisodes   Int
+  mediaLogId      String @unique
+  mediaLog        MediaLog @relation(fields: [mediaLogId], references: [id], onDelete: Cascade)
+}
+
+model Movie {
+  id          String @id @default(uuid()) @map("_id")
+  movieTitle  String
+  mediaLogId  String @unique
+  mediaLog    MediaLog @relation(fields: [mediaLogId], references: [id], onDelete: Cascade)
+}
+
+model Book {
+  id          String @id @default(uuid()) @map("_id")
+  bookTitle   String
+  author      String
+  mediaLogId  String @unique
+  mediaLog    MediaLog @relation(fields: [mediaLogId], references: [id], onDelete: Cascade)
+}
+
+model Podcast {
+  id           String @id @default(uuid()) @map("_id")
+  podcastTitle String
+  mediaLogId   String @unique
+  mediaLog     MediaLog @relation(fields: [mediaLogId], references: [id], onDelete: Cascade)
+}
+
